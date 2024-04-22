@@ -7,15 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryReservation", "Libra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{0071A982-CC27-44C6-B6D7-63AC04B19036}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{9551133F-FCB8-41DC-A7CE-75BC8AE77E50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{9551133F-FCB8-41DC-A7CE-75BC8AE77E50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BB5BADFA-D470-45E0-97E4-C92745633C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Application", "Core.Application\Core.Application.csproj", "{0290FDD3-13EB-4C59-A74A-EBE1AAD3F0FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "Core.Application\Core.Application.csproj", "{0290FDD3-13EB-4C59-A74A-EBE1AAD3F0FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "Core.Persistence\Core.Persistence.csproj", "{10EA1BE5-57C6-42B8-AE38-48612941EAEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "Core.Persistence\Core.Persistence.csproj", "{10EA1BE5-57C6-42B8-AE38-48612941EAEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{AD848C9F-E55D-43F6-89C8-83B87F9BF27F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{AD848C9F-E55D-43F6-89C8-83B87F9BF27F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{87540964-25E7-4F26-9757-D2B9E31EBBC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{AD848C9F-E55D-43F6-89C8-83B87F9BF27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD848C9F-E55D-43F6-89C8-83B87F9BF27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD848C9F-E55D-43F6-89C8-83B87F9BF27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87540964-25E7-4F26-9757-D2B9E31EBBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87540964-25E7-4F26-9757-D2B9E31EBBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87540964-25E7-4F26-9757-D2B9E31EBBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87540964-25E7-4F26-9757-D2B9E31EBBC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
