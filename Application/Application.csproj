@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Rooms\Commands\Create\" />
+    <Folder Include="Features\Rooms\Commands\Delete\" />
+    <Folder Include="Features\Rooms\Commands\Update\" />
+    <Folder Include="Features\Rooms\Queries\GetById\" />
+    <Folder Include="Features\Rooms\Queries\GetList\" />
+    <Folder Include="Features\Tables\Commands\Create\" />
+    <Folder Include="Features\Tables\Commands\Delete\" />
+    <Folder Include="Features\Tables\Commands\Update\" />
+    <Folder Include="Features\Tables\Queries\GetById\" />
+    <Folder Include="Features\Tables\Queries\GetList\" />
+    <Folder Include="Features\Users\Commands\Create\" />
+    <Folder Include="Features\Users\Commands\Delete\" />
+    <Folder Include="Features\Users\Commands\Update\" />
+    <Folder Include="Features\Users\Queries\GetById\" />
+    <Folder Include="Features\Users\Queries\GetList\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Application\Core.Application.csproj" />
+    <ProjectReference Include="..\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\Core.Persistence\Core.Persistence.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+</Project>
