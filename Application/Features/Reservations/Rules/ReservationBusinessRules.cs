@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Reservations.Rules;
 
-public class ReservationBusinessRules: BaseBusinessRules
+public class ReservationBusinessRules : BaseBusinessRules
 {
     private readonly IReservationRepository _ReservationRepository;
 
@@ -20,13 +20,13 @@ public class ReservationBusinessRules: BaseBusinessRules
         _ReservationRepository = ReservationRepository;
     }
 
-    public async Task ReservationNameCannotBeDuplicatedWhenInserted(string name)
+    public async Task ReservationTimeCannotBeDuplicatedWhenInserted(DateTime time)
     {
-        Reservation? result = await _ReservationRepository.GetAsync(predicate: b => b.Name.ToLower() == name.ToLower());
+        Reservation? result = await _ReservationRepository.GetAsync(predicate: b => b.Time == time);
 
         if (result != null)
         {
-            throw new BusinessException(ReservationsMessages.ReservationNameExists);
+            throw new BusinessException(ReservationsMessages.ReservationTimeExists);
         }
     }
 }

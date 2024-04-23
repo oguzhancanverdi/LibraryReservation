@@ -8,5 +8,5 @@ namespace Application.Features.Reservations.Constants;
 
 public class ReservationsMessages
 {
-    public const string ReservationNameExists = "Reservation name exists";
+    public const string ReservationTimeExists = "Reservation time exists";
 }

@@ -4,22 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Persistence.Repositories;
+namespace Application.Features.Rooms.Queries.GetById;
 
-public class Entity<TId> : IEntityTimestamps
+public class GetByIdRoomResponse
 {
-    public TId Id { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public int Capacity { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
     public DateTime? DeletedDate { get; set; }
-
-    public Entity()
-    {
-        Id = default;
-    }
-
-    public Entity(TId id)
-    {
-        Id = id;
-    }
 }

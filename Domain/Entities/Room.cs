@@ -9,5 +9,17 @@ namespace Domain.Entities;
 
 public class Room : Entity<Guid>
 {
+    public string Name { get; set; }
+    public int Capacity { get; set; }
 
+    public Room()
+    {
+    }
+
+    public Room(Guid id, string name, int capacity) : this()
+    {
+        Id = id;
+        Name = name;
+        Capacity = capacity;
+    }
 }

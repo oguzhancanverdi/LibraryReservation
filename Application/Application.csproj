@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Rooms\Commands\Create\" />
-    <Folder Include="Features\Rooms\Commands\Delete\" />
-    <Folder Include="Features\Rooms\Commands\Update\" />
-    <Folder Include="Features\Rooms\Queries\GetById\" />
-    <Folder Include="Features\Rooms\Queries\GetList\" />
     <Folder Include="Features\Tables\Commands\Create\" />
     <Folder Include="Features\Tables\Commands\Delete\" />
     <Folder Include="Features\Tables\Commands\Update\" />

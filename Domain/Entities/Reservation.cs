@@ -10,15 +10,18 @@ namespace Domain.Entities;
 
 public class Reservation : Entity<Guid>
 {
-    public string Name { get; set; }
+    public Guid UserId { get; set; }
+    public Guid TableId { get; set; }
+    public DateTime Time { get; set; }
 
     public Reservation()
     {
     }
 
-    public Reservation(Guid id, string name) : this()
+    public Reservation(Guid id, Guid roomId, Guid tableId, DateTime time) : this()
     {
         Id = id;
-        Name = name;
+        TableId = tableId;
+        Time = time;
     }
 }
