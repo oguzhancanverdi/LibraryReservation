@@ -7,19 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Tables\Commands\Create\" />
-    <Folder Include="Features\Tables\Commands\Delete\" />
-    <Folder Include="Features\Tables\Commands\Update\" />
-    <Folder Include="Features\Tables\Queries\GetById\" />
-    <Folder Include="Features\Tables\Queries\GetList\" />
-    <Folder Include="Features\Users\Commands\Create\" />
-    <Folder Include="Features\Users\Commands\Delete\" />
-    <Folder Include="Features\Users\Commands\Update\" />
-    <Folder Include="Features\Users\Queries\GetById\" />
-    <Folder Include="Features\Users\Queries\GetList\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />

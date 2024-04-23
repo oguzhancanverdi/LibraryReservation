@@ -15,6 +15,9 @@ public class BaseDbContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Room> Rooms { get; set; }
+    public DbSet<Table> Tables { get; set; }
+    public DbSet<User> Users { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
