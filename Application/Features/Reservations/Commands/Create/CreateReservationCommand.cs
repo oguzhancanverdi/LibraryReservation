@@ -15,6 +15,8 @@ namespace Application.Features.Reservations.Commands.Create;
 public class CreateReservationCommand : IRequest<CreatedReservationResponse>, ITransactionalRequest
 {
     public DateTime Time { get; set; }
+    public Guid UserId { get; set; }
+    public Guid SeatId { get; set; }
 
     public class CreateReservationCommandHandler : IRequestHandler<CreateReservationCommand, CreatedReservationResponse>
     {
@@ -31,10 +33,11 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
         public async Task<CreatedReservationResponse>? Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            await _ReservationBusinessRules.ReservationTimeCannotBeDuplicatedWhenInserted(request.Time);
-
             Reservation Reservation = _mapper.Map<Reservation>(request);
             Reservation.Id = Guid.NewGuid();
+            Reservation.Time = DateTime.Now;
+            Reservation.UserId = request.UserId;
+            Reservation.SeatId = request.SeatId;
 
             var result = await _ReservationRepository.AddAsync(Reservation);
 

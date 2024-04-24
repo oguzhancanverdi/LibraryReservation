@@ -22,12 +22,7 @@ public class ReservationBusinessRules : BaseBusinessRules
 
     public async Task ReservationTimeCannotBeDuplicatedWhenInserted(DateTime time)
     {
-        Reservation? result = await _ReservationRepository.GetAsync(predicate: b => b.Time == time);
-
-        if (result != null)
-        {
-            throw new BusinessException(ReservationsMessages.ReservationTimeExists);
-        }
+        throw new BusinessException(ReservationsMessages.ReservationTimeExists);
     }
 }
 

@@ -17,7 +17,7 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
-        builder.Property(b => b.TableId).HasColumnName("TableId").IsRequired();
+        builder.Property(b => b.SeatId).HasColumnName("SeatId").IsRequired();
         builder.Property(b => b.Time).HasColumnName("Time").IsRequired();
         builder.Property(b => b.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");

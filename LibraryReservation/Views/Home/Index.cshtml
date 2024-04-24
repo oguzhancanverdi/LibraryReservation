@@ -14,7 +14,7 @@
                 <div class="tableDiv">
                     @foreach (var seat in Model.Seats.Items.Where(s => s.TableId == table.Id).OrderBy(s => s.Name))
                     {
-                        <div class="@(seat.IsReserved ? "boxDivActive rowDiv" : "boxDiv rowDiv")">@seat.Name</div>
+                        <div id=@seat.Id class="@(seat.IsReserved ? "boxDivActive rowDiv" : "boxDiv rowDiv")">@seat.Name</div>
                     }
                 </div>
             }
