@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Tables.Queries.GetList;
+namespace Application.Features.Seats.Queries.GetList;
 
-public class GetListTableListItemDto
+public class GetListSeatListItemDto
 {
     public Guid Id { get; set; }
-    public int Number { get; set; }
+    public string Name { get; set; }
     public Guid TableId { get; set; }
+	public bool IsReserved { get; set; }
 }

@@ -15,7 +15,7 @@ public class UpdateTableCommand : IRequest<UpdatedTableResponse>
 {
     public Guid Id { get; set; }
     public int Number { get; set; }
-    public bool IsReserved { get; set; }
+    public Guid TableId { get; set; }
 
     public class UpdateTableCommandHandler : IRequestHandler<UpdateTableCommand, UpdatedTableResponse>
     {

@@ -17,7 +17,6 @@ public class TableConfiguration : IEntityTypeConfiguration<Table>
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.Number).HasColumnName("Number").IsRequired();
-        builder.Property(b => b.IsReserved).HasColumnName("IsReserved").IsRequired();
         builder.Property(b => b.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");

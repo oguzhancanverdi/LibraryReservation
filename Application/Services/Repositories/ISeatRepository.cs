@@ -1,14 +1,14 @@
 ﻿using Core.Persistence.Repositories;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities;
+namespace Application.Services.Repositories;
 
-public class Table : Entity<Guid>
+public interface ISeatRepository : IAsyncRepository<Seat, Guid>, IRepository<Seat, Guid>
 {
-	public int Number { get; set; }
-	public Guid RoomId { get; set; }
+
 }

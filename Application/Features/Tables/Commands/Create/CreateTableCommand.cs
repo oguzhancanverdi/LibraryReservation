@@ -16,7 +16,7 @@ namespace Application.Features.Tables.Commands.Create;
 public class CreateTableCommand : IRequest<CreatedTableResponse>, ITransactionalRequest
 {
     public int Number { get; set; }
-    public bool IsReserved { get; set; }
+    public Guid TableId { get; set; }
 
     public class CreateTableCommandHandler : IRequestHandler<CreateTableCommand, CreatedTableResponse>
     {
