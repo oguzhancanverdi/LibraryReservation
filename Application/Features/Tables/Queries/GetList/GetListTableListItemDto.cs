@@ -10,5 +10,5 @@ public class GetListTableListItemDto
 {
     public Guid Id { get; set; }
     public int Number { get; set; }
-    public Guid TableId { get; set; }
+    public Guid RoomId { get; set; }
 }

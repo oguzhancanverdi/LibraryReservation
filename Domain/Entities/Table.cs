@@ -11,4 +11,19 @@ public class Table : Entity<Guid>
 {
 	public int Number { get; set; }
 	public Guid RoomId { get; set; }
+
+	public virtual Room? Room { get; set; }
+	public virtual ICollection<Seat> Seats { get; set; }
+
+	public Table()
+	{
+		Seats = new HashSet<Seat>();
+	}
+
+	public Table(Guid id, int number, Guid roomId)
+	{
+		Id = id;
+		Number = number;
+		RoomId = roomId;
+	}
 }

@@ -1,79 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model LibraryReservation.Models.LibraryViewModel
+
+@{
+    ViewData["Title"] = "Kütüphane Rezervasyon Sistemi";
 }
 
-<div>
-	<h4>Salon 1</h4>
-	<div class="contentDiv">
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">1A</div>
-			<div class="boxDiv rowDiv">1B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">2A</div>
-			<div class="boxDiv rowDiv">2B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">3A</div>
-			<div class="boxDiv rowDiv">3B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">4A</div>
-			<div class="boxDiv rowDiv">4B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">5A</div>
-			<div class="boxDiv rowDiv">5B</div>
-		</div>
-
-	</div>
-</div>
-
-<div>
-	<h4>Salon 2</h4>
-	<div class="contentDiv">
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">1A</div>
-			<div class="boxDiv rowDiv">1B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">2A</div>
-			<div class="boxDiv rowDiv">2B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">3A</div>
-			<div class="boxDiv rowDiv">3B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">4A</div>
-			<div class="boxDiv rowDiv">4B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">5A</div>
-			<div class="boxDiv rowDiv">5B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">6A</div>
-			<div class="boxDiv rowDiv">6B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">7A</div>
-			<div class="boxDiv rowDiv">7B</div>
-		</div>
-
-		<div class="tableDiv">
-			<div class="boxDiv rowDiv">8A</div>
-			<div class="boxDiv rowDiv">8B</div>
-		</div>
-	</div>
-</div>
+@foreach (var room in Model.Rooms.Items.OrderBy(r => r.Name))
+{
+    <div>
+        <h4>@room.Name</h4>
+        <div class="contentDiv">
+            @foreach (var table in Model.Tables.Items.Where(t => t.RoomId == room.Id).OrderBy(t => t.Number))
+            {
+                <div class="tableDiv">
+                    @foreach (var seat in Model.Seats.Items.Where(s => s.TableId == table.Id).OrderBy(s => s.Name))
+                    {
+                        <div class="@(seat.IsReserved ? "boxDivActive rowDiv" : "boxDiv rowDiv")">@seat.Name</div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}

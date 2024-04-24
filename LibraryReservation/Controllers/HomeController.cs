@@ -1,10 +1,15 @@
-﻿using LibraryReservation.Models;
+﻿using Application.Features.Rooms.Queries.GetList;
+using Application.Features.Seats.Queries.GetList;
+using Application.Features.Tables.Queries.GetList;
+using Core.Application.Requests;
+using Core.Application.Responses;
+using LibraryReservation.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace LibraryReservation.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -15,7 +20,8 @@ namespace LibraryReservation.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var list = GetListAsync();
+            return View(list.Result);
         }
 
         public IActionResult Privacy()
@@ -27,6 +33,29 @@ namespace LibraryReservation.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<LibraryViewModel> GetListAsync()
+        {
+            PageRequest pageRequest = new() { PageIndex = 0, PageSize = 100 };
+
+            GetListRoomQuery getListRoomQuery = new() { PageRequest = pageRequest };
+            GetListResponse<GetListRoomListItemDto> responseRoom = await Mediator.Send(getListRoomQuery);
+
+            GetListTableQuery getListTableQuery = new() { PageRequest = pageRequest };
+            GetListResponse<GetListTableListItemDto> responseTable = await Mediator.Send(getListTableQuery);
+
+            GetListSeatQuery getListSeatQuery = new() { PageRequest = pageRequest };
+            GetListResponse<GetListSeatListItemDto> responseSeat = await Mediator.Send(getListSeatQuery);
+
+            LibraryViewModel libraryViewModel = new()
+            {
+                Rooms = responseRoom,
+                Tables = responseTable,
+                Seats = responseSeat
+            };
+
+            return libraryViewModel;
         }
     }
 }

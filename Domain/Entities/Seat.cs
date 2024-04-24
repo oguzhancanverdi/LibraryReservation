@@ -13,6 +13,7 @@ public class Seat : Entity<Guid>
 	public Guid TableId { get; set; }
 	public bool IsReserved { get; set; }
 
+	public virtual Table? Table { get; set; }
 
 	public Seat()
 	{

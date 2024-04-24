@@ -1,6 +1,6 @@
 var App = {
     Init: function (e) {
-        $(".box").click(function (e) {
+        $(".boxDiv").click(function (e) {
             console.log(e);
         });
     }

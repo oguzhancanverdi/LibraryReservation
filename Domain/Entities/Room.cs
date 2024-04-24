@@ -12,9 +12,12 @@ public class Room : Entity<Guid>
     public string Name { get; set; }
     public int Capacity { get; set; }
 
-    public Room()
+	public virtual ICollection<Table> Tables { get; set; }
+
+	public Room()
     {
-    }
+		Tables = new HashSet<Table>();
+	}
 
     public Room(Guid id, string name, int capacity) : this()
     {
