@@ -2,6 +2,7 @@
 using Application.Features.Users.Commands.Delete;
 using Application.Features.Users.Commands.Update;
 using Application.Features.Users.Queries.GetById;
+using Application.Features.Users.Queries.GetByUserName;
 using Application.Features.Users.Queries.GetList;
 using AutoMapper;
 using Core.Application.Responses;
@@ -30,6 +31,7 @@ public class MappingProfiles : Profile
 
         CreateMap<User, GetListUserListItemDto>().ReverseMap();
         CreateMap<User, GetByIdUserResponse>().ReverseMap();
+        CreateMap<User, GetByUserNameUserResponse>().ReverseMap();
 
         CreateMap<Paginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();
     }

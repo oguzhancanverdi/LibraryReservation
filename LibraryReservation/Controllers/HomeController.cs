@@ -6,6 +6,7 @@ using Core.Application.Requests;
 using Core.Application.Responses;
 using Domain.Entities;
 using LibraryReservation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -20,12 +21,14 @@ namespace LibraryReservation.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var list = GetListAsync();
             return View(list.Result);
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             var list = GetListAsyncHistory(new Guid("0342d92e-7075-4e46-a873-a2df245635c8"));
