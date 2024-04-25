@@ -5,6 +5,7 @@ using Application.Features.Reservations.Queries.GetById;
 using Application.Features.Reservations.Queries.GetList;
 using Core.Application.Requests;
 using Core.Application.Responses;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,13 @@ namespace LibraryReservation.Controllers.API
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateReservationCommand createReservationCommand)
         {
-            createReservationCommand.UserId = new Guid("0342d92e-7075-4e46-a873-a2df245635c8");
+            var user = HttpContext.User;
+
+            if (user != null)
+            {
+                createReservationCommand.UserId = new Guid(user.FindFirst(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+            }
+
             createReservationCommand.StartTime = DateTime.Now;
             CreatedReservationResponse response = await Mediator.Send(createReservationCommand);
             return Ok(response);
