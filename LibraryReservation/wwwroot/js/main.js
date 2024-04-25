@@ -9,30 +9,28 @@
         if (boxDiv) {
             $(".boxDiv").click(function (e) {
 
-                TemporarilyRreserved(e);
+                var model = {
+                    seatId: e ? e.target.id : ""
+                };
 
-                //var model = {
-                //    seatId: e.target.id
-                //};
-
-                //$.ajax({
-                //    url: "api/Reservations",
-                //    type: "POST",
-                //    data: JSON.stringify(model),
-                //    contentType: "application/json; charset=utf-8",
-                //    success: function (result) {
-                //        location.reload();
-                //        alert("İşlem başarılı");
-                //    },
-                //    error: function (xhr, status, error) {
-                //        alert(xhr.responseText);
-                //    }
-                //});
+                $.ajax({
+                    url: "api/Reservations",
+                    type: "POST",
+                    data: JSON.stringify(model),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        location.reload();
+                        alert("İşlem başarılı");
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
             });
         }
 
         async function TemporarilyRreserved(e) {
-            
+
             await wait(10000);
 
         }
