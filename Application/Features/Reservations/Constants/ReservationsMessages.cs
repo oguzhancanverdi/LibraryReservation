@@ -8,5 +8,5 @@ namespace Application.Features.Reservations.Constants;
 
 public class ReservationsMessages
 {
-    public const string ReservationTimeExists = "Reservation time exists";
+    public const string ReservationLibraryClosed = "The library is closed";
 }

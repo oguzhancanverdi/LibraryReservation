@@ -9,5 +9,8 @@ namespace Application.Features.Reservations.Queries.GetList;
 public class GetListReservationListItemDto
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public Guid SeatId { get; set; }
+    public Guid UserId { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
 }

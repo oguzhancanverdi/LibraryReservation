@@ -1,4 +1,4 @@
-var App = {
+ï»¿var App = {
     Init: function (e) {
         this.Reservation();
         this.User();
@@ -8,19 +8,20 @@ var App = {
             var model = {
                 seatId: e.target.id,
                 userId: UserId,
-                time: '2024-04-25'
+                startTime: '2024-04-25',
+                endTime: '2024-04-25'
             };
 
             $.ajax({
                 url: "api/Reservations",
                 type: "POST",
                 data: JSON.stringify(model),
-                contentType: "application/json",
+                contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    console.log("Ýþlem baþarýlý");
+                    console.log("Ä°ÅŸlem baÅŸarÄ±lÄ±");
                 },
                 error: function (xhr, status, error) {
-                    console.error("Hata oluþtu: " + error);
+                    console.error("Hata oluÅŸtu: " + error);
                 }
             });
         });

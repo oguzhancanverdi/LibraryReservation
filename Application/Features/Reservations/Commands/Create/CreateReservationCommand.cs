@@ -1,4 +1,5 @@
 ﻿using Application.Features.Reservations.Rules;
+using Application.Features.Rooms.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Transaction;
@@ -14,7 +15,8 @@ namespace Application.Features.Reservations.Commands.Create;
 
 public class CreateReservationCommand : IRequest<CreatedReservationResponse>, ITransactionalRequest
 {
-    public DateTime Time { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
     public Guid UserId { get; set; }
     public Guid SeatId { get; set; }
 
@@ -33,11 +35,12 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
         public async Task<CreatedReservationResponse>? Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
+            await _ReservationBusinessRules.ReservationLibraryClosedWhenInserted();
+
             Reservation Reservation = _mapper.Map<Reservation>(request);
             Reservation.Id = Guid.NewGuid();
-            Reservation.Time = DateTime.Now;
-            Reservation.UserId = request.UserId;
-            Reservation.SeatId = request.SeatId;
+            Reservation.StartTime = DateTime.Now;
+            Reservation.EndTime = DateTime.Now.AddHours(3);
 
             var result = await _ReservationRepository.AddAsync(Reservation);
 

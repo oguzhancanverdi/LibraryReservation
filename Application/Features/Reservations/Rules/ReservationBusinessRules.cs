@@ -20,9 +20,12 @@ public class ReservationBusinessRules : BaseBusinessRules
         _ReservationRepository = ReservationRepository;
     }
 
-    public async Task ReservationTimeCannotBeDuplicatedWhenInserted(DateTime time)
+    public async Task ReservationLibraryClosedWhenInserted()
     {
-        throw new BusinessException(ReservationsMessages.ReservationTimeExists);
+        if (!ReservationHoursRules.IsLibraryOpen(DateTime.Now))
+        {
+            throw new BusinessException(ReservationsMessages.ReservationLibraryClosed);
+        }
     }
 }
 

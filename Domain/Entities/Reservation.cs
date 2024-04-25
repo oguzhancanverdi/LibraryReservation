@@ -12,16 +12,18 @@ public class Reservation : Entity<Guid>
 {
     public Guid UserId { get; set; }
     public Guid SeatId { get; set; }
-    public DateTime Time { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
 
     public Reservation()
     {
     }
 
-    public Reservation(Guid id, Guid roomId, Guid seatId, DateTime time) : this()
+    public Reservation(Guid id, Guid roomId, Guid seatId, DateTime startTime, DateTime endTime) : this()
     {
         Id = id;
         SeatId = seatId;
-        Time = time;
+        StartTime = startTime;
+        EndTime = endTime;
     }
 }

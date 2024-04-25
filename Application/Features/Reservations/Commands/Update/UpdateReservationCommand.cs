@@ -13,8 +13,10 @@ namespace Application.Features.Reservations.Commands.Update;
 public class UpdateReservationCommand : IRequest<UpdatedReservationResponse>
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-
+    public Guid UserId { get; set; }
+    public Guid SeatId { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
     public class UpdateReservationCommandHandler : IRequestHandler<UpdateReservationCommand, UpdatedReservationResponse>
     {
         private readonly IReservationRepository _ReservationRepository;
