@@ -8,5 +8,6 @@ namespace Application.Features.Reservations.Constants;
 
 public class ReservationsMessages
 {
-    public const string ReservationLibraryClosed = "The library is closed";
+    public const string ReservationLibraryClosed = "Kütüphane kapalı.";
+    public const string ReservationUserCheck = "1 haftada en fazla 2 kez rezervasyon yapılabilir.";
 }

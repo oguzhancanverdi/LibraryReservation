@@ -25,17 +25,20 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
         private readonly IReservationRepository _ReservationRepository;
         private readonly IMapper _mapper;
         private readonly ReservationBusinessRules _ReservationBusinessRules;
+        private readonly ReservationHoursRules _ReservationHoursRules;
 
-        public CreateReservationCommandHandler(IReservationRepository ReservationRepository, IMapper mapper, ReservationBusinessRules ReservationBusinessRules)
+        public CreateReservationCommandHandler(IReservationRepository ReservationRepository, IMapper mapper, ReservationBusinessRules ReservationBusinessRules, ReservationHoursRules ReservationHoursRules)
         {
             _ReservationRepository = ReservationRepository;
             _mapper = mapper;
             _ReservationBusinessRules = ReservationBusinessRules;
+            _ReservationHoursRules = ReservationHoursRules;
         }
 
         public async Task<CreatedReservationResponse>? Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            await _ReservationBusinessRules.ReservationLibraryClosedWhenInserted();
+            await _ReservationHoursRules.ReservationLibraryClosedWhenInserted();
+            await _ReservationBusinessRules.ReservationUserCheckWhenInserted(request.UserId);
 
             Reservation Reservation = _mapper.Map<Reservation>(request);
             Reservation.Id = Guid.NewGuid();

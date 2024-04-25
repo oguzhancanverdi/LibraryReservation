@@ -6,10 +6,7 @@
     Reservation: function () {
         $(".boxDiv").click(function (e) {
             var model = {
-                seatId: e.target.id,
-                userId: UserId,
-                startTime: '2024-04-25',
-                endTime: '2024-04-25'
+                seatId: e.target.id
             };
 
             $.ajax({
@@ -18,10 +15,10 @@
                 data: JSON.stringify(model),
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    console.log("İşlem başarılı");
+                    alert("İşlem başarılı");
                 },
                 error: function (xhr, status, error) {
-                    console.error("Hata oluştu: " + error);
+                    alert(xhr.responseText);
                 }
             });
         });

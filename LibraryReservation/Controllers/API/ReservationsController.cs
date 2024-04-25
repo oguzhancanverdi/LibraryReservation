@@ -17,6 +17,8 @@ namespace LibraryReservation.Controllers.API
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateReservationCommand createReservationCommand)
         {
+            createReservationCommand.UserId = new Guid("0342d92e-7075-4e46-a873-a2df245635c8");
+            createReservationCommand.StartTime = DateTime.Now;
             CreatedReservationResponse response = await Mediator.Send(createReservationCommand);
             return Ok(response);
         }

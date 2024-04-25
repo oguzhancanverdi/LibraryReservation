@@ -2,6 +2,7 @@
 using Application.Services.Repositories;
 using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Exceptions.Types;
+using Core.Persistence.Paging;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,27 @@ public class ReservationBusinessRules : BaseBusinessRules
         _ReservationRepository = ReservationRepository;
     }
 
-    public async Task ReservationLibraryClosedWhenInserted()
+    public async Task ReservationUserCheckWhenInserted(Guid userId)
     {
-        if (!ReservationHoursRules.IsLibraryOpen(DateTime.Now))
+        if (LastWeekReservationCheck(userId).Result)
         {
-            throw new BusinessException(ReservationsMessages.ReservationLibraryClosed);
+            throw new BusinessException(ReservationsMessages.ReservationUserCheck);
         }
+    }
+
+    public async Task<bool> LastWeekReservationCheck(Guid userId)
+    {
+        DateTime currentDate = DateTime.Now;
+        DateTime lastWeekDate = currentDate.AddDays(-7);
+
+        Paginate<Reservation> result = await _ReservationRepository.GetListAsync(predicate: r => r.UserId == userId && r.StartTime >= lastWeekDate && r.StartTime <= currentDate);
+
+        if (result.Count > 1)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
 
