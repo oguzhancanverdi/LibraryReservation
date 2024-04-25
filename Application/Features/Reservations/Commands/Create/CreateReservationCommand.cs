@@ -23,13 +23,15 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
     public class CreateReservationCommandHandler : IRequestHandler<CreateReservationCommand, CreatedReservationResponse>
     {
         private readonly IReservationRepository _ReservationRepository;
+        private readonly ISeatRepository _SeatRepository;
         private readonly IMapper _mapper;
         private readonly ReservationBusinessRules _ReservationBusinessRules;
         private readonly ReservationHoursRules _ReservationHoursRules;
 
-        public CreateReservationCommandHandler(IReservationRepository ReservationRepository, IMapper mapper, ReservationBusinessRules ReservationBusinessRules, ReservationHoursRules ReservationHoursRules)
+        public CreateReservationCommandHandler(IReservationRepository ReservationRepository, ISeatRepository SeatRepository, IMapper mapper, ReservationBusinessRules ReservationBusinessRules, ReservationHoursRules ReservationHoursRules)
         {
             _ReservationRepository = ReservationRepository;
+            _SeatRepository = SeatRepository;
             _mapper = mapper;
             _ReservationBusinessRules = ReservationBusinessRules;
             _ReservationHoursRules = ReservationHoursRules;
@@ -46,6 +48,14 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
             Reservation.EndTime = DateTime.Now.AddHours(3);
 
             var result = await _ReservationRepository.AddAsync(Reservation);
+
+            Seat seat = _SeatRepository.GetAsync(predicate: s => s.Id == Reservation.SeatId).Result;
+            if (seat != null)
+            {
+                seat.IsReserved = true;
+                await _SeatRepository.UpdateAsync(seat);
+                Thread.Sleep(1000);
+            }
 
             CreatedReservationResponse createdReservationResponse = _mapper.Map<CreatedReservationResponse>(result);
 

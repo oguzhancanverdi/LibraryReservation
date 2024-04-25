@@ -1,4 +1,5 @@
-﻿using Application.Features.Reservations.Queries.GetList;
+﻿using Application.Features.Reservations.Commands.Create;
+using Application.Features.Reservations.Queries.GetList;
 using Application.Features.Rooms.Queries.GetList;
 using Application.Features.Seats.Queries.GetList;
 using Application.Features.Tables.Queries.GetList;
@@ -31,7 +32,15 @@ namespace LibraryReservation.Controllers
         [Authorize]
         public IActionResult Privacy()
         {
-            var list = GetListAsyncHistory(new Guid("0342d92e-7075-4e46-a873-a2df245635c8"));
+            var user = HttpContext.User;
+
+            Guid userId = new Guid();
+
+            if (user != null)
+            {
+                userId = new Guid(user.FindFirst(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+            }
+            var list = GetListAsyncHistory(userId);
             return View(list.Result);
         }
 

@@ -4,27 +4,41 @@
         this.User();
     },
     Reservation: function () {
-        $(".boxDiv").click(function (e) {
-            var model = {
-                seatId: e.target.id
-            };
+        var boxDiv = $(".boxDiv");
 
-            $.ajax({
-                url: "api/Reservations",
-                type: "POST",
-                data: JSON.stringify(model),
-                contentType: "application/json; charset=utf-8",
-                success: function (result) {
-                    alert("İşlem başarılı");
-                },
-                error: function (xhr, status, error) {
-                    alert(xhr.responseText);
-                }
+        if (boxDiv) {
+            $(".boxDiv").click(function (e) {
+
+                TemporarilyRreserved(e);
+
+                //var model = {
+                //    seatId: e.target.id
+                //};
+
+                //$.ajax({
+                //    url: "api/Reservations",
+                //    type: "POST",
+                //    data: JSON.stringify(model),
+                //    contentType: "application/json; charset=utf-8",
+                //    success: function (result) {
+                //        location.reload();
+                //        alert("İşlem başarılı");
+                //    },
+                //    error: function (xhr, status, error) {
+                //        alert(xhr.responseText);
+                //    }
+                //});
             });
-        });
+        }
+
+        async function TemporarilyRreserved(e) {
+            
+            await wait(10000);
+
+        }
     },
     User: function () {
-        UserId = "asdsa";
+        UserId = "";
         UserName = "";
         FirstName = "";
         LastName = "";

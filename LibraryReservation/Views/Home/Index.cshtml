@@ -4,6 +4,18 @@
     ViewData["Title"] = "Kütüphane Rezervasyon Sistemi";
 }
 
+<div>
+    <label>Boş koltuklar:</label>
+    <div id="boxDivYellow"></div>
+</div>
+
+<div>
+    <label>Dolu koltuklar:</label>
+    <div id="boxDivGray"></div>
+</div>
+
+<br />
+
 @foreach (var room in Model.Rooms.Items.OrderBy(r => r.Name))
 {
     <div>
