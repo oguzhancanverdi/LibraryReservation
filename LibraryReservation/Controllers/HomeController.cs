@@ -1,8 +1,10 @@
-﻿using Application.Features.Rooms.Queries.GetList;
+﻿using Application.Features.Reservations.Queries.GetList;
+using Application.Features.Rooms.Queries.GetList;
 using Application.Features.Seats.Queries.GetList;
 using Application.Features.Tables.Queries.GetList;
 using Core.Application.Requests;
 using Core.Application.Responses;
+using Domain.Entities;
 using LibraryReservation.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -26,7 +28,8 @@ namespace LibraryReservation.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            var list = GetListAsyncHistory(new Guid("0342d92e-7075-4e46-a873-a2df245635c8"));
+            return View(list.Result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -56,6 +59,19 @@ namespace LibraryReservation.Controllers
             };
 
             return libraryViewModel;
+        }
+
+        public async Task<HistoryViewModel> GetListAsyncHistory(Guid userId)
+        {
+            GetListByUserIdReservationQuery getListByUserIdReservationQuery = new() { UserId = userId };
+            GetListResponse<GetListByUserIdReservationListItemDto> response = await Mediator.Send(getListByUserIdReservationQuery);
+
+            HistoryViewModel historyViewModel = new()
+            {
+                Reservations = response
+            };
+
+            return historyViewModel;
         }
     }
 }

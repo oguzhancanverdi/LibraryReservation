@@ -30,7 +30,9 @@ public class MappingProfiles : Profile
 
         CreateMap<Reservation, GetListReservationListItemDto>().ReverseMap();
         CreateMap<Reservation, GetByIdReservationResponse>().ReverseMap();
+        CreateMap<Reservation, GetListByUserIdReservationListItemDto>().ReverseMap();
 
         CreateMap<Paginate<Reservation>, GetListResponse<GetListReservationListItemDto>>().ReverseMap();
+        CreateMap<Paginate<Reservation>, GetListResponse<GetListByUserIdReservationListItemDto>>().ReverseMap();
     }
 }

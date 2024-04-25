@@ -1,6 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@model LibraryReservation.Models.HistoryViewModel
+
+@{
+    ViewData["Title"] = "Geçmiş";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<ul class="list-group">
+    @foreach (var item in Model.Reservations.Items)
+    {
+        <li class="list-group-item">@item.StartTime</li>
+    }
+</ul>

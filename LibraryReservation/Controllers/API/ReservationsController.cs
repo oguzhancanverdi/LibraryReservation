@@ -31,11 +31,11 @@ namespace LibraryReservation.Controllers.API
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetListByUserId([FromQuery] Guid userId)
         {
-            GetByIdReservationQuery getByIdReservationQuery = new() { Id = id };
-            GetByIdReservationResponse response = await Mediator.Send(getByIdReservationQuery);
+            GetListByUserIdReservationQuery getListByUserIdReservationQuery = new() { UserId = userId };
+            GetListResponse<GetListByUserIdReservationListItemDto> response = await Mediator.Send(getListByUserIdReservationQuery);
             return Ok(response);
         }
 
