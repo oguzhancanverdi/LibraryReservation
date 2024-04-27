@@ -39,7 +39,7 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
         public async Task<CreatedReservationResponse>? Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            //await _ReservationHoursRules.ReservationLibraryClosedWhenInserted();
+            await _ReservationHoursRules.ReservationLibraryClosedWhenInserted();
             await _ReservationBusinessRules.ReservationUserCheckWhenInserted(request.UserId);
 
             Reservation Reservation = _mapper.Map<Reservation>(request);

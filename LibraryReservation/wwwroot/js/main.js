@@ -5,6 +5,11 @@
     },
     Reservation: function () {
 
+        var actions = {
+            "Rezervasyon": 1,
+            "Iptal": 2
+        }
+
         var boxDiv = $(".boxDiv");
         if (boxDiv) {
             $(".boxDiv").click(function (e) {
@@ -71,14 +76,14 @@
         });
 
         connection.on("ReceiveName", (name) => {
-            if (name === "Seçildi")
+            if (name === actions.Rezervasyon)
                 location.reload();
             else
                 $('#listName').append(`<li class="list-group-item"> ${name}</li>`)
         })
         function ShowConnectionState() {
             $('.boxDiv').click(() => {
-                connection.invoke("SendName", "Seçildi");
+                connection.invoke("SendName", actions.Rezervasyon);
             });
 
             $(".boxDivActive").click(function (e) {
