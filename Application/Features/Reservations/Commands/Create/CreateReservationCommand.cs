@@ -49,13 +49,13 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
             var result = await _ReservationRepository.AddAsync(Reservation);
 
-            Seat seat = _SeatRepository.GetAsync(predicate: s => s.Id == Reservation.SeatId).Result;
-            if (seat != null)
-            {
-                seat.IsReserved = true;
-                await _SeatRepository.UpdateAsync(seat);
-                Thread.Sleep(1000);
-            }
+            //Seat seat = _SeatRepository.GetAsync(predicate: s => s.Id == Reservation.SeatId).Result;
+            //if (seat != null)
+            //{
+            //    seat.IsReserved = true;
+            //    await _SeatRepository.UpdateAsync(seat);
+            //    Thread.Sleep(1000);
+            //}
 
             CreatedReservationResponse createdReservationResponse = _mapper.Map<CreatedReservationResponse>(result);
 
