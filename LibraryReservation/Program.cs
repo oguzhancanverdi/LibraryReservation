@@ -1,4 +1,5 @@
 using Application;
+using Infrastructure;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -8,6 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.WithOrigins("https://localhost:7295").
+         AllowAnyHeader().
+         AllowAnyMethod().
+         AllowCredentials();
+    });
+});
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(c =>
 {
@@ -48,6 +62,14 @@ app.UseAuthentication();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ReservationHub>("/ReservationHub");
+    endpoints.MapControllers();
+});
+
+app.UseCors("CorsPolicy");
 
 app.MapControllerRoute(
     name: "default",

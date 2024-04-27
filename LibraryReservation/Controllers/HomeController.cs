@@ -22,7 +22,6 @@ namespace LibraryReservation.Controllers
             _logger = logger;
         }
 
-        [Authorize]
         public IActionResult Index()
         {
             var list = GetListAsync();

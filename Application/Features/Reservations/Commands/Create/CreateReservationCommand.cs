@@ -39,7 +39,7 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
         public async Task<CreatedReservationResponse>? Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            await _ReservationHoursRules.ReservationLibraryClosedWhenInserted();
+            //await _ReservationHoursRules.ReservationLibraryClosedWhenInserted();
             await _ReservationBusinessRules.ReservationUserCheckWhenInserted(request.UserId);
 
             Reservation Reservation = _mapper.Map<Reservation>(request);
@@ -49,13 +49,12 @@ public class CreateReservationCommand : IRequest<CreatedReservationResponse>, IT
 
             var result = await _ReservationRepository.AddAsync(Reservation);
 
-            //Seat seat = _SeatRepository.GetAsync(predicate: s => s.Id == Reservation.SeatId).Result;
-            //if (seat != null)
-            //{
-            //    seat.IsReserved = true;
-            //    await _SeatRepository.UpdateAsync(seat);
-            //    Thread.Sleep(1000);
-            //}
+            Seat seat = _SeatRepository.GetAsync(predicate: s => s.Id == Reservation.SeatId).Result;
+            if (seat != null)
+            {
+                seat.IsReserved = true;
+                await _SeatRepository.UpdateAsync(seat);
+            }
 
             CreatedReservationResponse createdReservationResponse = _mapper.Map<CreatedReservationResponse>(result);
 
